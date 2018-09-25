@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-1by1">
-                            <img src="http://komora.kitchen/wp-content/uploads/2017/09/poltavska-300x250.jpg" alt="Placeholder image">
+                            <img :src="getCover(item.id)">
                         </figure>
                     </div>
                     <div class="card-header-title">
@@ -31,6 +31,9 @@
             this.getAll()
         },
         methods: {
+            getCover(id){
+                return "https://apiinterlude.in-story.org/api/getCoverById?elem_id="+id;
+            },
             getAll() {
                 this.$http.get('https://apiinterlude.in-story.org/api/method/menu.get').then(response => {
                     if (response.body.success == true)
