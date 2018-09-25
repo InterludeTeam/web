@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="hero-head">
+      <nav class="navbar is-light">
+        <div class="navbar-brand">
+          <a>
+          <router-link class="navbar-item" to="/" id="main-title">
+            Interlude
+          </router-link></a>
+          <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="navbar-menu" :class="{ 'is-active': showNav }">
+          <div class="navbar-end">
+            <router-link class="navbar-item" to="/menu">
+              Продукция
+            </router-link>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <br>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+    data(){
+      return {
+          showNav: false
+      }
+    }
 }
 </script>
 
 <style>
+  #main-title{
+    color: #2962FF;
+    font-weight: bold;
+    font-size: 21pt;
+  }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

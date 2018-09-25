@@ -1,13 +1,13 @@
 <template>
     <section>
-        Menu Page
+        Home Page
         <p>POOOOKA</p>
     </section>
 </template>
 
 <script>
     export default {
-        name: "Menu"
+        name: "HOme"
     }
 </script>
 
