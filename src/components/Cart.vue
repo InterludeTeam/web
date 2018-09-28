@@ -17,16 +17,19 @@
                             {{ props.row.amount }}
                         </b-table-column>
                         <b-table-column label="Цiна">
-                            {{props.row.item.price}} грн × {{props.row.amount}} = {{ props.row.item.price * props.row.amount }}
+                            {{props.row.item.price}} грн. × {{props.row.amount}} = {{ props.row.item.price * props.row.amount }}
                         </b-table-column>
                         <b-table-column field="item_id" label="Дiя" width="40">
                             <!--{{JSON.stringify(props.index)}}-->
-                            <a class="button is-small is-danger" @click="items.splice(props.index, 1)">✖</a>
+                            <a class="button is-small is-danger" @click="() => {
+                            items.splice(props.index, 1);
+                            update();
+                            }">✖</a>
                             <!--{{ props.row.amount }}-->
                         </b-table-column>
                     </template>
-
                 </b-table>
+                Всього: {{price}} грн.
             </div>
         </div>
         <footer class="modal-card-foot">
@@ -48,10 +51,20 @@
         props: ['items', 'open'],
         data() {
             return {
-
+                price: 0
             }
         },
+        created(){
+            this.update();
+        },
         methods: {
+            update(){
+                var price = 0;
+                this.items.forEach((item) => {
+                    price = price + item.item.price*item.amount;
+                })
+                this.price = price;
+            },
             buy(){
                 var items = this.items;
                 var result = [];
