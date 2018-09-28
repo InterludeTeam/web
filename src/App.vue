@@ -22,8 +22,7 @@
         </div>
       </nav>
     </div>
-    <div class="container">
-      <br>
+    <div>
       <router-view></router-view>
     </div>
   </div>
