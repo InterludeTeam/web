@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="container" style="padding-top: 2%">
         <div class="columns is-mobile is-multiline">
             <div class="column is-one-third-desktop is-full-mobile is-full-tablet mobile-padding" v-bind:key="item.id"
                  v-for="(item, index) in items">
@@ -53,8 +53,22 @@
         },
         created() {
             this.getAll()
+            window.addEventListener('beforeunload', this.savecart)
+        },
+        beforeMount(){
+          var cart = window.localStorage.getItem('cart');
+          if(cart != null){
+              this.cart = JSON.parse(cart);
+          }
+        },
+        beforeDestroy(){
+            this.savecart();
         },
         methods: {
+            savecart(){
+                window.localStorage.setItem('cart', JSON.stringify(this.cart));
+
+            },
             getCover(id) {
                 return "https://apiinterlude.in-story.org/api/getCoverById?elem_id=" + id;
             },

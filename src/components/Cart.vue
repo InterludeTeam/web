@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="width: 450px">
+    <div class="card" style="width: 490px">
         <header class="modal-card-head">
             <p class="modal-card-title">
                 Кошик
@@ -16,9 +16,12 @@
                         <b-table-column field="amount" label="Кол-во" numeric>
                             {{ props.row.amount }}
                         </b-table-column>
-                        <b-table-column field="item_id" label="Действие" width="40">
+                        <b-table-column label="Цiна">
+                            {{props.row.item.price}} грн × {{props.row.amount}} = {{ props.row.item.price * props.row.amount }}
+                        </b-table-column>
+                        <b-table-column field="item_id" label="Дiя" width="40">
                             <!--{{JSON.stringify(props.index)}}-->
-                            <a class="button is-small is-danger" @click="items.splice(props.index, 1)">x</a>
+                            <a class="button is-small is-danger" @click="items.splice(props.index, 1)">✖</a>
                             <!--{{ props.row.amount }}-->
                         </b-table-column>
                     </template>
@@ -38,8 +41,10 @@
 </template>
 
 <script>
+    import BTableColumn from "buefy/src/components/table/TableColumn";
     export default {
         name: "Cart",
+        components: {BTableColumn},
         props: ['items', 'open'],
         data() {
             return {
@@ -63,6 +68,7 @@
                             message: 'Замовленя додано в обробку',
                             type: 'is-success'
                         })
+                        this.items = [];
                     }
 
                 });
