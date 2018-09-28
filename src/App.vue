@@ -16,7 +16,7 @@
         <div class="navbar-menu" :class="{ 'is-active': showNav }">
           <div class="navbar-end">
             <router-link class="navbar-item" to="/menu">
-              Продукция
+              Продукція
             </router-link>
           </div>
         </div>
